@@ -42,6 +42,11 @@ def main_loop():
     st.text("Original Image vs. Registered Image")
     st.image([original_image, registered_image], width=200)
 
+    st.text("The tranformation matrix you're using is: ")
+    st.text("\t" + f'{a:8.3f}' + ", " + f'{b:8.3f}' + ", " + f'{c:8.3f}')
+    st.text("\t" + f'{d:8.3f}' + ", " + f'{e:8.3f}' + ", " + f'{f:8.3f}')
+    st.text("\t" + f'{0:8.3f}' + ", " + f'{0:8.3f}' + ", " + f'{1:8.3f}')
+
 
 if __name__ == '__main__':
     main_loop()
