@@ -11,7 +11,7 @@ from PIL import Image
 def main_loop():
     st.title("Image Registration Demo")
     st.subheader("This app allows you to play with parameters of the transformation matrix!")
-    st.text("Use the sliders in the sidebar to modify the parameters of the transformation matrix")
+    st.text("Change the values in the sidebar to modify the parameters of the transformation matrix")
     st.text(" and try to make the 'Registered' image be as close to the original as possible.")
 
     a = st.sidebar.number_input("a", key="a", min_value=0.0, max_value=5.0, value=1.0, step=0.25)
