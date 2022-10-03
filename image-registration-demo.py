@@ -25,12 +25,16 @@ def main_loop():
     original_image = np.array(original_image)
 
     test_tform = np.float32([[1.0, 0.5, 20.0], [0.0, 2.0, -20.0], [0.0, 0.0, 1.0]])
-    deformed_image = cv2.warpPerspective(original_image, test_tform, (512, 512), flags=cv2.INTER_LINEAR)
+    deformed_image = cv2.warpPerspective(original_image, test_tform, (768, 768), flags=cv2.INTER_LINEAR)
     tform = np.float32([[a, b, c], [d, e, f], [0.0, 0.0, 1.0]])
 
-    registered_image = cv2.warpPerspective(deformed_image, tform, (512, 512), flags=cv2.INTER_LINEAR)
+    registered_image = cv2.warpPerspective(deformed_image, tform, (768, 768), flags=cv2.INTER_LINEAR)
 
-    st.text("The transformation matrix is: [a, b, c; d, e, f; 0, 0, 1]")
+    st.text("The tranformation matrix is defined as: ")
+    st.text("\t a, b, c")
+    st.text("\t d, e, f")
+    st.text("\t 0, 0, 1")
+    st.text("and the default values are the identity matrix.")
 
     st.text("Original Image vs. Deformed Image")
     st.image([original_image, deformed_image], width=200)
