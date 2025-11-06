@@ -1,3 +1,13 @@
+---
+title: Image Registration Demo
+emoji: 🔄
+colorFrom: blue
+colorTo: green
+sdk: docker
+pinned: false
+license: mit
+---
+
 # image-registration
 
 This is a demonstration of how transformation matrices affect registration for the affine case.
