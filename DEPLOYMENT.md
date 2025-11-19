@@ -2,6 +2,8 @@
 
 This guide will walk you through deploying your Streamlit Image Registration app to Hugging Face Spaces using Docker.
 
+**Note**: This app loads images from a Hugging Face dataset (`amithjkamath/exampleimages`) instead of bundling them with the Space, which allows you to avoid the binary file restrictions on Hugging Face Spaces.
+
 ## Prerequisites
 
 1. A Hugging Face account (sign up at https://huggingface.co/join)
@@ -27,7 +29,7 @@ pip install huggingface_hub
 ### Login to Hugging Face
 
 ```bash
-huggingface-cli login
+hf auth login
 ```
 
 When prompted, paste your token. This will store your credentials in `~/.huggingface/token`.
@@ -71,10 +73,18 @@ Make sure your repository contains the following files:
 
 ### Required Files:
 - ✅ `dockerfile` - Your Docker configuration (already created)
-- ✅ `requirements.txt` - Python dependencies (already created)
-- ✅ `image-registration-demo.py` - Your Streamlit app
-- ✅ `rawimage.png` - The sample image used in the app
+- ✅ `requirements.txt` - Python dependencies (already created, includes `datasets` library)
+- ✅ `image-registration-demo.py` - Your Streamlit app (updated to load from HF dataset)
 - ✅ `README.md` - Documentation for your Space
+
+### ⚠️ Important: Image Dataset
+This app loads images from a separate Hugging Face dataset: `amithjkamath/exampleimages`
+
+**Why?** Hugging Face Spaces with the blank Docker template don't support binary files like images in the repository. By loading images from a dataset, we circumvent this limitation.
+
+**Your dataset**: https://huggingface.co/datasets/amithjkamath/exampleimages
+
+The app will automatically download images from this dataset when it starts. Make sure the dataset is public or set up proper authentication if it's private.
 
 ### Optional but Recommended:
 - `.gitignore` - To exclude unnecessary files
@@ -162,8 +172,8 @@ Thumbs.db
 
 ```bash
 # Make sure all your files are committed
-git add dockerfile requirements.txt image-registration-demo.py rawimage.png README.md
-git commit -m "Initial deployment to Hugging Face Spaces"
+git add dockerfile requirements.txt image-registration-demo.py README.md
+git commit -m "Initial deployment to Hugging Face Spaces with dataset integration"
 
 # Push to Hugging Face (assuming you added the remote in Step 3)
 git push hf main
@@ -285,13 +295,13 @@ jobs:
 
 ```bash
 # Check Space status
-huggingface-cli repo info amithkamath/image-registration --repo-type space
+hf repo info amithkamath/image-registration --repo-type space
 
 # View Space logs (if available via CLI)
-huggingface-cli repo logs amithkamath/image-registration --repo-type space
+hf repo logs amithkamath/image-registration --repo-type space
 
 # Delete and recreate Space (careful!)
-huggingface-cli repo delete amithkamath/image-registration --repo-type space
+hf repo delete amithkamath/image-registration --repo-type space
 ```
 
 ## Resources

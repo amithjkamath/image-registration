@@ -7,7 +7,7 @@
 pip install huggingface_hub
 
 # 2. Login with your token
-huggingface-cli login
+hf auth login
 
 # 3. Run the deployment script
 ./deploy.sh
@@ -19,7 +19,7 @@ huggingface-cli login
 
 ```bash
 # 1. Login to Hugging Face
-huggingface-cli login
+hf auth login
 
 # 2. Add Hugging Face remote
 git remote add hf https://huggingface.co/spaces/amithkamath/image-registration
@@ -79,7 +79,7 @@ Then set as environment variable in Space settings.
 ## 🐛 Common Issues
 
 ### "Authentication failed"
-→ Run `huggingface-cli login` again with a valid token
+→ Run `hf auth login` again with a valid token
 
 ### "Build failed"
 → Check logs at the Space URL, verify dockerfile and requirements.txt
@@ -94,10 +94,11 @@ Then set as environment variable in Space settings.
 
 Ensure these files are in your repo:
 - ✅ `dockerfile` - Docker configuration
-- ✅ `requirements.txt` - Python dependencies  
-- ✅ `image-registration-demo.py` - Your Streamlit app
-- ✅ `rawimage.png` - Sample image
+- ✅ `requirements.txt` - Python dependencies (includes `datasets` library)
+- ✅ `image-registration-demo.py` - Your Streamlit app (loads from HF dataset)
 - ✅ `README.md` - With Hugging Face metadata
+
+**Note**: Images are loaded from the HF dataset `amithjkamath/exampleimages`, not from local files. This avoids binary file restrictions on Hugging Face Spaces.
 
 ## 🔄 Update Workflow
 
