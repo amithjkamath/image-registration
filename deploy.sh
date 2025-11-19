@@ -49,7 +49,7 @@ fi
 
 echo ""
 echo "Files to be deployed:"
-git ls-files | grep -E "(dockerfile|requirements\.txt|.*\.py|README\.md|LICENSE)"
+git ls-files | grep -E "(Dockerfile|requirements\.txt|.*\.py|README\.md|LICENSE)"
 echo ""
 echo "📊 Note: Images are loaded from HF dataset (amithjkamath/exampleimages)"
 echo "   No need to include rawimage.png or other binary files"
@@ -64,7 +64,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     
     # Add all essential files for the Space
     echo "Adding files to git..."
-    git add dockerfile requirements.txt image-registration-demo.py README.md LICENSE .gitignore 2>/dev/null || true
+    git add Dockerfile requirements.txt image-registration-demo.py README.md LICENSE .gitignore 2>/dev/null || true
     
     # Remove deleted files (like rawimage.png)
     git add -u 2>/dev/null || true
